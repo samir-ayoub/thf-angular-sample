@@ -123,7 +123,9 @@ export class CustomersComponent implements OnDestroy, OnInit {
   private filter() {
     const filters = this.disclaimers.map(disclaimer => disclaimer.value);
 
-    filters.length ? this.applyFilters(filters) : this.resetFilters();
+    if ( this.itemsFiltered ) {
+      filters.length ? this.applyFilters(filters) : this.resetFilters();
+    }
   }
 
   private getCustomers() {
@@ -161,7 +163,6 @@ export class CustomersComponent implements OnDestroy, OnInit {
 
   private resetFilters() {
     this.itemsFiltered = [...this.items];
-    this.customerStatus = '';
   }
 
   private setLiteralsDefaultValues() {
@@ -221,4 +222,5 @@ export class CustomersComponent implements OnDestroy, OnInit {
       placeholder: this.literals['search']
     };
   }
+  
 }
